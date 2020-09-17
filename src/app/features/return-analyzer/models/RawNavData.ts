@@ -1,4 +1,4 @@
 export interface RawNavData{
-  date:Date;
+  date:string;
   nav:number
 }

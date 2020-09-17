@@ -1,5 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FundNavDetails } from '../../models';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from 'rxjs';
+import { FundNavDetails, NavDataModel } from '../../models';
 
 @Component({
   selector: 'mfa-nav-data-table',
@@ -7,12 +10,37 @@ import { FundNavDetails } from '../../models';
   styleUrls: ['./nav-data-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavDataTableComponent implements OnInit {
+export class NavDataTableComponent implements OnChanges {
 
-  @Input() searchedResult: FundNavDetails;
-  constructor() { }
+  @Input() searchedResult: Observable<FundNavDetails>;
+  displayedColumns: string[] = ['month', 'return', 'description'];
+  dataSource: MatTableDataSource<NavDataModel> = new MatTableDataSource<NavDataModel>();
+  fundHouse:string;
+  schemeName:string;
+  schemeCode:string;
 
-  ngOnInit(): void {
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  constructor() {
+
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    let resultSearchChange = changes['searchedResult'];
+    if(!resultSearchChange.isFirstChange() && resultSearchChange.currentValue){
+      const change = resultSearchChange.currentValue;
+      this.dataSource.data = change.nav_data;
+      this.fundHouse = change.fund_house;
+      this.schemeCode = change.scheme_code;
+      this.schemeName = change.scheme_name;
+    }
+  }
+
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 }

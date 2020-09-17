@@ -1,8 +1,6 @@
 <mat-card>
-  <mat-card-header>
+    <mat-card-content>
     <mfa-search-form (searchNav)="onNavSearch($event)"></mfa-search-form>
-  </mat-card-header>
-  <mat-card-content>
     <mfa-nav-data-table [searchedResult]="fundDetails$|async"></mfa-nav-data-table>
   </mat-card-content>
 </mat-card>
