@@ -56,7 +56,7 @@ export class ToasterInterceptor implements HttpInterceptor {
     if (error.error instanceof ErrorEvent) {
       this.snackbarService.openSnackBar(error.error.message);
     } else {
-      this.snackbarService.openSnackBar('Error completing the request, please try again.');
+      this.snackbarService.openSnackBar(`Error completing the request. Msg: ${error.message} `);
     }
     return throwError(error);
   }

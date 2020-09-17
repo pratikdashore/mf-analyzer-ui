@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { FundNavDetails } from '../../models';
 
 @Component({
   selector: 'mfa-nav-data-table',
@@ -8,6 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 })
 export class NavDataTableComponent implements OnInit {
 
+  @Input() searchedResult: FundNavDetails;
   constructor() { }
 
   ngOnInit(): void {

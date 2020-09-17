@@ -6,6 +6,7 @@ import { mfaInterceptors } from './interceptors';
 import { HeaderComponent } from '../core/components';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterComponent } from '../core/components/router/router.component';
 
 
@@ -16,7 +17,8 @@ import { RouterComponent } from '../core/components/router/router.component';
     HttpClientModule,
 
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatSnackBarModule
   ],
   providers: [mfaInterceptors, { provide: ErrorHandler, useClass: MfaErrorHandler }],
   exports: [HeaderComponent, RouterComponent]

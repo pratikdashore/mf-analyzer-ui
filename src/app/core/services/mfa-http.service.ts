@@ -31,6 +31,11 @@ export class MfaHttpService {
     return relativeUrl;
   }
 
+  /* The idea was to implement backend as well but since there was not enough time, calling it direct url,
+     this method will be standard method, which will communicate to server and server will always return Response object which will contain status, data and error ///message if any.
+  */
+
+
   public getForEntity<R>(url: string, params?: any): Observable<R> {
     const absoluteUrl = this.getAbsoluteUrl(url);
     const httpParms = this.constructParams(params);
@@ -40,12 +45,22 @@ export class MfaHttpService {
     };
     return this.httpClient.get<Response>(absoluteUrl, options).pipe(
       map((response: Response) => {
-        if (response.responseType === ResponseType.SUCCESS && response.data !== undefined) {
+        if (response.status === ResponseType.SUCCESS && response.data !== undefined) {
           return <R>response.data;
         }
         throw observableThrowError(response);
       })
     );
+  }
+
+  public get(url: string, params?: any): Observable<Response> {
+    const absoluteUrl = this.getAbsoluteUrl(url);
+    const httpParms = this.constructParams(params);
+    const options = {
+      ...this.httpOptions,
+      params: httpParms,
+    };
+    return this.httpClient.get<Response>(absoluteUrl, options);
   }
 
 }

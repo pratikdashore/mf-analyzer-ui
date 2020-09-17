@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavSearchForm } from '../../models';
+import { Observable } from 'rxjs';
+import { FundNavDetails, NavSearchForm } from '../../models';
 import { NavSearchService } from '../../services';
 
 @Component({
@@ -9,13 +10,14 @@ import { NavSearchService } from '../../services';
 })
 export class SearchContainerComponent implements OnInit {
 
+  fundDetails$: Observable<FundNavDetails>;
   constructor(private navSearchService: NavSearchService) { }
 
   ngOnInit(): void {
   }
 
   onNavSearch(searchModel: NavSearchForm) {
-    this.navSearchService.searchNavData(searchModel);
+    this.fundDetails$ = this.navSearchService.searchNavData(searchModel);
   }
 
 }

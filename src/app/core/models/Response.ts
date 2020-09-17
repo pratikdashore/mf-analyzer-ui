@@ -5,9 +5,8 @@ export enum ResponseType {
   INFO = 'INFO'
 }
 export class Response {
-  responseType: ResponseType;
-  responseCode: number;
+  status: ResponseType;
   msg: string;
   data: any;
-  additionalData: any;
+  meta: any;
 }
