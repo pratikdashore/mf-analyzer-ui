@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavSearchForm } from '../../models';
+import { NavSearchService } from '../../services';
 
 @Component({
   selector: 'mfa-search-container',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private navSearchService: NavSearchService) { }
 
   ngOnInit(): void {
+  }
+
+  onNavSearch(searchModel: NavSearchForm) {
+    this.navSearchService.searchNavData(searchModel);
   }
 
 }

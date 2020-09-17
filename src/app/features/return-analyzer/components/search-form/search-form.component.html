@@ -1,1 +1,31 @@
-<mat-card>Simple card</mat-card>
+<section>
+  <mat-card>
+    <mat-card-title>Search Nav</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="onSearch()" [formGroup]="searchForm">
+        <div>
+          <mat-form-field class="mfa__form_field" appearance="standard">
+            <mat-label>Fund Code</mat-label>
+            <input matInput placeholder="Fund Code" autocompleteDisabled autocomplete="off" formControlName="fundCode">
+            <mat-error *ngIf="errorMessages?.fundCode">{{errorMessages.fundCode}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="mfa__form_field" appearance="standard" >
+            <mat-label>Horizon</mat-label>
+            <input type="number" matInput placeholder="Placeholder" autocompleteDisabled autocomplete="off" formControlName="horizon">
+            <mat-hint>In Years</mat-hint>
+            <mat-error *ngIf="errorMessages?.horizon">{{errorMessages.horizon}}</mat-error>
+          </mat-form-field>
+          <mat-form-field class="mfa__form_field" appearance="standard">
+            <mat-label>Investment Period</mat-label>
+            <input type="number" matInput placeholder="Placeholder" autocompleteDisabled autocomplete="off" formControlName="period">
+            <mat-hint>In Years</mat-hint>
+            <mat-error *ngIf="errorMessages?.period">{{errorMessages.period}}</mat-error>
+          </mat-form-field>
+          <button [disabled]="!searchForm.valid" mat-fab mat-raised-button color="primary" type="submit" class="btn-lg" aria-label="Search Nav">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

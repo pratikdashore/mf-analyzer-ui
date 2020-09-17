@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-header>
-    <mfa-search-form></mfa-search-form>
+    <mfa-search-form (searchNav)="onNavSearch($event)"></mfa-search-form>
   </mat-card-header>
   <mat-card-content>
     <mfa-nav-data-table></mfa-nav-data-table>

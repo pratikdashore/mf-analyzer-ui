@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { ReturnAnalyzerRoutingModule } from './return-analyzer-routing.module';
 import { ReturnAnalyzerComponent } from './return-analyzer.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { SharedModule } from 'src/app/shared';
 import { NavDataTableComponent, SearchFormComponent } from './components';
 
 
