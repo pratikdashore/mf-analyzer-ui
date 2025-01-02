@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SearchFormComponent } from './components';
+import { NavDataTableComponent, SearchFormComponent } from './components';
 import { SearchContainerComponent } from './containers';
 
 import { ReturnAnalyzerComponent } from './return-analyzer.component';
@@ -20,5 +20,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class ReturnAnalyzerRoutingModule {
-  static components = [SearchContainerComponent]
+  static components = [ReturnAnalyzerComponent, SearchFormComponent, NavDataTableComponent,SearchContainerComponent]
 }
